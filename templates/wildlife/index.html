@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+INDEX PAGE
+
+<h2>Posts</h2>
+<hr />
+{% if posts %}
+    {% for post in posts %}
+        <p>{{ post.description }}</p>
+        <img src="{{ post.picture.url }}" alt="Post image" />
+    {% endfor %}
+{% endif %}
+</body>
+</html>
