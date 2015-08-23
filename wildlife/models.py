@@ -20,3 +20,19 @@ class Post(models.Model):
         return self.slug
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    username = models.CharField(max_length=30)
+    picture = models.ImageField(upload_to='profile_images', default='profile_images/default_user_picture.jpg')
+    status = models.TextField(blank=True)
+    ''' solve the issue of users with same profile usernames '''
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username)
+        super(UserProfile, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.user.username
+
+

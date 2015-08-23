@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', views.index, name='index'),
+    url(r'^user/(?P<username_slug>[\w\-]+)/$', views.user_profile, name='profile'),
 )
 
