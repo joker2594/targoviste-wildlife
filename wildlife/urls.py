@@ -9,5 +9,6 @@ urlpatterns = patterns('',
 
     url(r'^$', views.index, name='index'),
     url(r'^user/(?P<username_slug>[\w\-]+)/$', views.user_profile, name='profile'),
+    url(r'^post/(?P<post_slug>[\w\-]+)/$', views.post, name='post'),
 )
 

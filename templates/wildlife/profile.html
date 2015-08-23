@@ -6,6 +6,16 @@
 </head>
 <body>
 <h2>{{ profile.username }}</h2>
+<p>{{ profile.status }}</p>
+<img src="{{ profile.picture.url }}" alt="Profile picture" />
 
+<h3>{{ profile.username }}' posts: </h3>
+<hr/>
+{% if posts %}
+    {% for post in posts %}
+        {{ post.description }}<br/>
+        <img src="{{ post.picture.url }}" alt="Post picture" /><hr/><br/>
+    {% endfor %}
+{% endif %}
 </body>
 </html>

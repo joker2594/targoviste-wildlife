@@ -20,3 +20,10 @@ def user_profile(request, username_slug):
 
     return render(request, 'wildlife/profile.html', context_dict)
 
+
+def post(request, post_slug):
+    post = Post.objects.get(slug=post_slug)
+    user = post.user
+    user_profile = UserProfile.objects.get(user=user)
+
+    return render(request, 'wildlife/post.html', {'user': user, 'profile': user_profile, 'post': post})

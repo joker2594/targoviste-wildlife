@@ -11,8 +11,10 @@ INDEX PAGE
 <hr />
 {% if posts %}
     {% for post in posts %}
+
         <p>{{ post.description }}</p>
-        <img src="{{ post.picture.url }}" alt="Post image" />
+        <img src="{{ post.picture.url }}" alt="Post image" /><br/>
+        <a href="{% url 'post' post.slug %}">Go to post >></a>
     {% endfor %}
 {% endif %}
 </body>
