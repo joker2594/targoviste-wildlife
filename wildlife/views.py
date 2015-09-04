@@ -4,15 +4,19 @@ from django.contrib.auth.models import User
 
 
 def index(request):
+    return render(request, 'wildlife/index.html', {})
+
+
+def gallery(request):
     posts = Post.objects.all()
-    return render(request, 'wildlife/index.html', {'posts': posts})
+    return render(request, 'wildlife/gallery.html', {'posts': posts})
 
 
 def user_profile(request, username_slug):
     context_dict = {}
     user_profile = UserProfile.objects.get(slug=username_slug)
     user = user_profile.user
-    user_posts = Post.objects.filter(user=user)
+    user_posts = Post.objects.filter(user_profile=user_profile)
 
     context_dict['profile'] = user_profile
     context_dict['user'] = user
@@ -23,7 +27,7 @@ def user_profile(request, username_slug):
 
 def post(request, post_slug):
     post = Post.objects.get(slug=post_slug)
-    user = post.user
-    user_profile = UserProfile.objects.get(user=user)
+    user_profile = post.user_profile
+    user = user_profile.user
 
     return render(request, 'wildlife/post.html', {'user': user, 'profile': user_profile, 'post': post})

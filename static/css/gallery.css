@@ -1,0 +1,33 @@
+.post-image {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+
+}
+
+.post {
+    padding: 10px;
+}
+
+.content {
+    margin-top: 100px;
+}
+
+.image {
+    position:relative;
+    overflow:hidden;
+}
+
+.overlay {
+    position:absolute;
+    top:0;
+    right:0;
+    background:rgba(0, 0, 0, 0.75);
+    width:100%;
+    height:100%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}

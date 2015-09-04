@@ -1,0 +1,35 @@
+{% extends 'wildlife/base.html' %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+
+    <div class="container content">
+        <div class="row">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="post-image col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        {% thumbnail post.picture "350x350" crop="center" as im %}
+                            <div class="image">
+                                <a href="{% url 'post' post.slug %}">
+                                    <div class="overlay">
+                                        <h6>{{ post.user_profile.username }}</h6>
+                                        <p>{{ post.description }}</p>
+
+                                    </div>
+                                </a>
+                                <img src="{{ im.url }}" class="img-responsive">
+
+                            </div>
+                        {% empty %}
+                            <p>No image</p>
+                        {% endthumbnail %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
