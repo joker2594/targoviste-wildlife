@@ -31,3 +31,21 @@
     color:#fff !important;
     z-index:2;
 }
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-post-image {
+    display: inline-block;
+    padding: 0;
+}
+
+.modal-post-desc {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.profile-pic {
+    padding: 10px 0;
+}

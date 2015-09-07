@@ -1,1 +1,13 @@
+.grey-cover {
+    position: absolute;
+    height: 240px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    background-color: #555;
+}
 
+.profile-image {
+    padding: 20px 30px;
+}

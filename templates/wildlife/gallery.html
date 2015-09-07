@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+
 
     <div class="container content">
         <div class="row">
@@ -13,20 +13,53 @@
                     <div class="post-image col-lg-3 col-md-3 col-sm-6 col-xs-6">
                         {% thumbnail post.picture "350x350" crop="center" as im %}
                             <div class="image">
-                                <a href="{% url 'post' post.slug %}">
+                                <a href="" data-toggle="modal" data-target="#myModal"
+                                   data-username="{{ post.user_profile.username }}"
+                                   data-description="{{ post.description }}" data-picture="{{ post.picture.url }}"
+                                   data-posted="{{ post.date_added }}" data-profilepic="{{ post.user_profile.picture.url }}">
                                     <div class="overlay">
                                         <h6>{{ post.user_profile.username }}</h6>
                                         <p>{{ post.description }}</p>
 
                                     </div>
                                 </a>
-                                <img src="{{ im.url }}" class="img-responsive">
+                                <img src="{{ im.url }}" class="img-responsive" alt="post image">
 
                             </div>
                         {% empty %}
                             <p>No image</p>
                         {% endthumbnail %}
-                    </div>
+                    </div><!-- end post-image -->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="modal-post-image col-lg-8 col-md-8">
+                                                <img src="" class="img-responsive" alt="post image" />
+                                            </div>
+                                            <div class="modal-post-desc col-lg-4 col-md-4">
+                                                <div class="profile-pic col-lg-2 col-md-2">
+                                                    <img src="" alt="" class="img-responsive img-circle" />
+                                                </div>
+                                                <div class="col-lg-10 col-md-10">
+                                                    <h6 class="user-name"></h6>
+                                                    <p class="post-date"></p>
+                                                </div>
+
+                                                <p class="description">...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end modal -->
+
                 {% endfor %}
             {% endif %}
         </div>
