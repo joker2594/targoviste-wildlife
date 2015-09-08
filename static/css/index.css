@@ -15,3 +15,23 @@
 .featurette-divider {
     margin: 30px 0;
 }
+
+.login-modal-header {
+    text-align: center;
+}
+
+.login-modal-body, .register-modal-body {
+    padding: 15px 0;
+}
+
+.login-modal-body .form-control, p {
+    margin: 15px auto;
+}
+
+.register-modal-body .form-control {
+    margin: 15px auto;
+}
+
+
+
+
