@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('wildlife.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

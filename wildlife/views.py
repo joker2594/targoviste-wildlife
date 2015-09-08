@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 
 def index(request):
-    return render(request, 'wildlife/index.html', {})
+    context = {}
+    return render(request, 'wildlife/index.html', context)
 
 
 def gallery(request):
