@@ -11,6 +11,7 @@ $(document).ready(function() {
     $('#myModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var username = button.data('username');
+        var username_slug = button.data('usernameslug');
         var description = button.data('description');
         var picture = button.data('picture');
         var profile_pic = button.data('profilepic');
@@ -23,7 +24,8 @@ $(document).ready(function() {
         var modal = $(this);
         modal.find('.modal-post-image img').attr('src', picture);
         modal.find('.profile-pic img').attr('src', profile_pic);
-        modal.find('.user-name').text(username);
+        modal.find('.user-name h6').text(username);
+        modal.find('.user-name').attr('href', '/user/' + username_slug);
         modal.find('.post-date').text(date_posted);
         modal.find('.description').text(description);
 

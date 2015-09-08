@@ -1,5 +1,8 @@
 {% extends 'wildlife/base.html' %}
 
+{% load thumbnail %}
+{% load staticfiles %}
+
 {% block navbar_block %}
     <div class="grey-cover"></div>
 {% endblock %}
@@ -10,11 +13,13 @@
         <div class="row">
 
 
-            <div class="profile-image col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <img class="img-responsive" src="{{ profile.picture.url }}" alt="Profile picture" />
+            <div class="profile-image col-lg-2 col-md-3 col-sm-12 col-xs-12">
+                {% thumbnail profile.picture "200x200" crop="center" as im %}
+                    <img class="img-responsive img-thumbnail" src="{{ im.url }}" alt="Profile picture" />
+                {% endthumbnail %}
             </div>
 
-            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+            <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
                 <h2>{{ profile.username }}</h2>
                 <p>{{ profile.status }}</p>
             </div>
@@ -23,11 +28,59 @@
                 <h3>{{ profile.username }}' posts: </h3>
                 <hr/>
                 {% if posts %}
-                    {% for post in posts %}
-                        {{ post.description }}<br/>
-                        <img src="{{ post.picture.url }}" alt="Post picture" /><hr/><br/>
-                    {% endfor %}
-                {% endif %}
+                {% for post in posts %}
+                    <div class="post-image col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        {% thumbnail post.picture "350x350" crop="center" as im %}
+                            <div class="image">
+                                <a href="" data-toggle="modal" data-target="#myModal"
+                                   data-username="{{ post.user_profile.username }}" data-usernameslug="{{ post.user_profile.slug }}"
+                                   data-description="{{ post.description }}" data-picture="{{ post.picture.url }}"
+                                   data-posted="{{ post.date_added }}" data-profilepic="{{ post.user_profile.picture.url }}">
+                                    <div class="overlay">
+                                        <h6>{{ post.user_profile.username }}</h6>
+                                        <p>{{ post.description }}</p>
+
+                                    </div>
+                                </a>
+                                <img src="{{ im.url }}" class="img-responsive" alt="post image">
+
+                            </div>
+                        {% empty %}
+                            <p>No image</p>
+                        {% endthumbnail %}
+                    </div><!-- end post-image -->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="modal-post-image col-lg-8 col-md-8">
+                                                <img src="" class="img-responsive" alt="post image" />
+                                            </div>
+                                            <div class="modal-post-desc col-lg-4 col-md-4">
+                                                <div class="profile-pic col-lg-2 col-md-2">
+                                                    <img src="" alt="" class="img-responsive img-circle" />
+                                                </div>
+                                                <div class="col-lg-10 col-md-10">
+                                                    <a class="user-name" href=""><h6></h6></a>
+                                                    <p class="post-date"></p>
+                                                </div>
+
+                                                <p class="description">...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end modal -->
+
+                {% endfor %}
+            {% endif %}
             </div>
         </div>
     </div>

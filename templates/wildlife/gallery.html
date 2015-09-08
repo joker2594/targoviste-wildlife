@@ -14,7 +14,7 @@
                         {% thumbnail post.picture "350x350" crop="center" as im %}
                             <div class="image">
                                 <a href="" data-toggle="modal" data-target="#myModal"
-                                   data-username="{{ post.user_profile.username }}"
+                                   data-username="{{ post.user_profile.username }}" data-usernameslug="{{ post.user_profile.slug }}"
                                    data-description="{{ post.description }}" data-picture="{{ post.picture.url }}"
                                    data-posted="{{ post.date_added }}" data-profilepic="{{ post.user_profile.picture.url }}">
                                     <div class="overlay">
@@ -47,7 +47,7 @@
                                                     <img src="" alt="" class="img-responsive img-circle" />
                                                 </div>
                                                 <div class="col-lg-10 col-md-10">
-                                                    <h6 class="user-name"></h6>
+                                                    <a class="user-name" href=""><h6></h6></a>
                                                     <p class="post-date"></p>
                                                 </div>
 

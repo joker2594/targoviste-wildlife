@@ -9,5 +9,9 @@
 }
 
 .profile-image {
-    padding: 20px 30px;
+    padding: 20px 20px;
+}
+
+.featurette-divider {
+    margin: 30px 0;
 }
