@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from models import Post, UserProfile
+from forms import PostForm
 from django.contrib.auth.models import User
 
 
@@ -32,3 +33,29 @@ def post(request, post_slug):
     user = user_profile.user
 
     return render(request, 'wildlife/post.html', {'user': user, 'profile': user_profile, 'post': post})
+
+
+def add_post(request):
+    if request.method == 'POST':
+        print 'posttttt'
+        post_form = PostForm(request.POST)
+
+        if post_form.is_valid():
+            user_profile = UserProfile.objects.get(user=request.user)
+            post = post_form.save(commit=False)
+            post.user_profile = user_profile
+
+            if 'picture' in request.FILES:
+                post.picture = request.FILES['picture']
+
+            post.save()
+
+            return HttpResponseRedirect('/gallery/')
+        else:
+            # The supplied form contained errors - just print them to the terminal.
+            print post_form.errors
+
+    else:
+        post_form = PostForm()
+
+    return render(request, 'wildlife/add_post.html', {'post_form': post_form})

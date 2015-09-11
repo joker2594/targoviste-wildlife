@@ -1,0 +1,28 @@
+<form class="form-horizontal" id="post_form" role="form" method="post" action="{% url 'add_post' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for hidden in post_form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    <div class="form-group">
+        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 control-label" for="id_description">Description:</label>
+        <div class="col-sm-9 col-xs-12 col-lg-8">
+            <textarea class="form-control"  id="id_description" cols="50" rows="4" name="description" required >Write a description...</textarea>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 control-label" for="id_picture">Picture:</label>
+        <div class="col-sm-9 col-xs-12 col-lg-6">
+            <input type="file" class="form-control" id="id_picture" name="picture" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-4">
+            <button type="submit" class="btn btn-primary btn-block">Post</button>
+        </div>
+
+    </div>
+
+</form>

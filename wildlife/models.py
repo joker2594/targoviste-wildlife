@@ -22,14 +22,14 @@ class UserProfile(models.Model):
 
 class Post(models.Model):
     user_profile = models.ForeignKey(UserProfile, null=True)
-    picture = models.ImageField(upload_to='post_images')
+    picture = models.ImageField(upload_to='post_images', null=True)
     description = models.TextField(blank=True)
     date_added = models.DateTimeField()
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.date_added)
         self.date_added = datetime.now()
+        self.slug = slugify(self.date_added)
         super(Post, self).save(*args, **kwargs)
 
     def __unicode__(self):
