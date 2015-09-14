@@ -30,5 +30,11 @@ $(document).ready(function() {
         modal.find('.description').text(description);
 
 
-    })
+    });
+
+    $('.edit-button').click(function() {
+        $('.edit-status').toggle();
+        $('.user-profile-desc').toggle();
+
+    });
 });

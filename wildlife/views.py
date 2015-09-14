@@ -6,12 +6,21 @@ from django.contrib.auth.models import User
 
 def index(request):
     context = {}
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        context['profile'] = user_profile
+
     return render(request, 'wildlife/index.html', context)
 
 
 def gallery(request):
-    posts = Post.objects.all()
-    return render(request, 'wildlife/gallery.html', {'posts': posts})
+    context = {}
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        context['profile'] = user_profile
+    posts = Post.objects.all().order_by('-date_added')
+    context['posts'] = posts
+    return render(request, 'wildlife/gallery.html', context)
 
 
 def user_profile(request, username_slug):
@@ -37,7 +46,6 @@ def post(request, post_slug):
 
 def add_post(request):
     if request.method == 'POST':
-        print 'posttttt'
         post_form = PostForm(request.POST)
 
         if post_form.is_valid():

@@ -63,7 +63,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My account <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {% if user.is_authenticated %}
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' profile.slug %}">Profile</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'auth_logout' %}">Logout</a></li>
                                     <li role="presentation"><a href="" data-toggle="modal" data-target="#postModal" role="menuitem" tabindex="-1">Post</a></li>
                                 {% else %}
@@ -225,15 +225,15 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 control-label" for="id_description">Description:</label>
-                                    <div class="col-sm-9 col-xs-12 col-lg-8">
-                                        <textarea class="form-control"  id="id_description" cols="50" rows="4" name="description" required >Write a description...</textarea>
+                                    <div class="post-description col-sm-12 col-xs-12 col-lg-7 col-md-7" >
+                                        <textarea class="form-control" id="id_description" rows="4" cols="40" name="description" placeholder="Write a description..." required ></textarea>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 control-label" for="id_picture">Picture:</label>
-                                    <div class="col-sm-9 col-xs-12 col-lg-6">
+                                    <div class="col-sm-12 col-xs-12 col-lg-7 col-md-7">
                                         <input type="file" class="form-control" id="id_picture" name="picture" />
                                     </div>
                                 </div>

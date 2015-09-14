@@ -14,14 +14,22 @@
 
 
             <div class="profile-image col-lg-2 col-md-3 col-sm-12 col-xs-12">
-                {% thumbnail profile.picture "200x200" crop="center" as im %}
-                    <img class="img-responsive img-thumbnail" src="{{ im.url }}" alt="Profile picture" />
-                {% endthumbnail %}
+
+                <img class="img-responsive img-thumbnail" src="{{ profile.picture.url }}" alt="Profile picture" />
+
             </div>
 
             <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
                 <h2>{{ profile.username }}</h2>
-                <p>{{ profile.status }}</p>
+                <p class="user-profile-description">
+                    <span class="user-profile-desc">{{ profile.status }}</span>
+                    <button type="button" class="edit-button btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                    <input type="text" class="edit-status form-control" placeholder="{{ profile.status }}" />
+
+                </p>
+
             </div>
 
             <div class="col-lg-12 col-md-12">

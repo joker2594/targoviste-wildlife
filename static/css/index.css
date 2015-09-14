@@ -32,6 +32,16 @@
     margin: 15px auto;
 }
 
+.user-profile-description {
+    color: #999;
+}
 
+.user-profile-description button {
+    padding: 0;
+    background-color: #555;
+    border-color: #555;
+}
 
-
+.user-profile-description input {
+    display: none;
+}

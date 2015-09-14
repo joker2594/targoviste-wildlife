@@ -31,7 +31,7 @@
                         {% endthumbnail %}
                     </div><!-- end post-image -->
 
-                    <!-- Modal -->
+                    <!-- MODAL -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
@@ -52,6 +52,19 @@
                                                 </div>
 
                                                 <p class="description">...</p>
+
+                                                {% if user.is_authenticated %}
+                                                    <div class="comment-form">
+                                                        <div class="comment-box col-lg-10 col-md-10">
+
+                                                            <input type="text" class="form-control"  placeholder="Write a comment" />
+
+                                                        </div>
+                                                        <div class="comment-box col-lg-2 col-md-2">
+                                                            <button type="submit" class="btn btn-default">...</button>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

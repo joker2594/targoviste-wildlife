@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from datetime import datetime
+from sorl.thumbnail import get_thumbnail
+from django.core.files.base import ContentFile
 
 
 class UserProfile(models.Model):
@@ -13,7 +15,12 @@ class UserProfile(models.Model):
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.username)
+        if not self.id:
+            self.slug = slugify(self.username)
+            super(UserProfile, self).save(*args, **kwargs)
+            resized = get_thumbnail(self.picture, "200x200", crop="center")
+            self.picture.save(resized.name, ContentFile(resized.read()), True)
+
         super(UserProfile, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -36,6 +43,8 @@ class Post(models.Model):
         return self.slug
 
 
-
-
-
+class Comment(models.Model):
+    user_profile = models.ForeignKey(UserProfile, null=True)
+    post = models.ForeignKey(Post, null=True)
+    comment = models.TextField()
+    date_added = models.DateTimeField()
