@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^post/(?P<post_slug>[\w\-]+)/$', views.post, name='post'),
     url(r'^gallery/$', views.gallery, name='gallery'),
     url(r'^add_post/$', views.add_post, name='add_post'),
+    url(r'^edit_status/$', views.edit_status, name='edit_status'),
 )
 

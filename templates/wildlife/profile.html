@@ -21,14 +21,22 @@
 
             <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
                 <h2>{{ profile.username }}</h2>
-                <p class="user-profile-description">
+                <div class="user-profile-description">
                     <span class="user-profile-desc">{{ profile.status }}</span>
-                    <button type="button" class="edit-button btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </button>
-                    <input type="text" class="edit-status form-control" placeholder="{{ profile.status }}" />
-
-                </p>
+                    {% if user == profile.user %}
+                        <div class="edit-status col-lg-6">
+                            <div class="input-group">
+                                <input type="text" id="new-status" class="form-control" value="{{ profile.status }}"/>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" id="save-status" type="button">Save</button>
+                                  </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <button type="button" data-status="{{ profile.status }}" class="edit-button btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                    {% endif %}
+                </div>
 
             </div>
 

@@ -33,8 +33,18 @@ $(document).ready(function() {
     });
 
     $('.edit-button').click(function() {
+        var status = $(this).attr('data-status');
         $('.edit-status').toggle();
         $('.user-profile-desc').toggle();
+
+
+    });
+
+    $('#save-status').click(function () {
+        var new_status = $('#new-status').val();
+        $.get('/edit_status/', {status: new_status}, function() {
+            location.reload();
+        });
 
     });
 });

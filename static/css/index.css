@@ -36,12 +36,12 @@
     color: #999;
 }
 
-.user-profile-description button {
+.edit-button {
     padding: 0;
     background-color: #555;
     border-color: #555;
 }
 
-.user-profile-description input {
+.edit-status {
     display: none;
 }

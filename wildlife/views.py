@@ -26,11 +26,9 @@ def gallery(request):
 def user_profile(request, username_slug):
     context_dict = {}
     user_profile = UserProfile.objects.get(slug=username_slug)
-    user = user_profile.user
     user_posts = Post.objects.filter(user_profile=user_profile)
 
     context_dict['profile'] = user_profile
-    context_dict['user'] = user
     context_dict['posts'] = user_posts
 
     return render(request, 'wildlife/profile.html', context_dict)
@@ -67,3 +65,17 @@ def add_post(request):
         post_form = PostForm()
 
     return render(request, 'wildlife/add_post.html', {'post_form': post_form})
+
+
+def edit_status(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    status = None
+
+    if request.method == 'GET':
+        status = request.GET['status']
+
+    if status is not None:
+        user_profile.status = status
+        user_profile.save()
+
+    return HttpResponseRedirect('/user/' + str(user_profile.slug))
